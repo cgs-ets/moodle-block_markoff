@@ -11,7 +11,7 @@ Michael Vangelovski<br/>
 
 ## Examples
 
-### Posting an announcement
+### Demo
 ![](/screenshots/block_markoff.gif?raw=true)
 
 ### Example question body
