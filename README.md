@@ -1,8 +1,20 @@
 # moodle-block_markoff
 A block to mark off students and display a survey.
 
-# Example of question body
+Author
+--------
+Veronica Bermegui<br/>
+Michael Vangelovski<br/>
+<michael.vangelovski@gmail><br/>
+<https://github.com/michaelvangelovski><br/>
+<http://michaelvangelovski.com>
 
+## Examples
+
+### Posting an announcement
+![](/screenshots/block_markoff.gif?raw=true)
+
+### Example question body
 	<a class="option" href="#" data-value="1-very-weary">
 	    <span class="label">Very weary</span>
 	    <img src="http://moodle.local/draftfile.php/5/user/draft/581842372/icon-1-weary-face-96.png" alt="" role="presentation" aria-hidden="true" aria-label="Very weary">
