@@ -26,6 +26,7 @@ $string['pluginname'] = 'Markoff';
 $string['markoff'] = 'Markoff';
 $string['markoff:addinstance'] = 'Add a new Markoff block';
 $string['markoff:myaddinstance'] = 'Add a new Markoff block to the My Moodle page';
+$string['markoff:edit'] = 'Edit a Markoff block';
 $string['questiontitle'] = 'Question Title';
 $string['questionbody'] = 'Question Body';
 $string['surveycomplete'] = '<h2>Thank you for completing the survey</h2>';
