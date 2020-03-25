@@ -77,8 +77,8 @@ class block_markoff extends block_base {
         }
 
         // Only continue processing and display block if user is a student or admin.
-        preg_match('/students/', strtolower($USER->profile['CampusRoles']), $matches);
-        if ( ! $matches && ! is_siteadmin()) {
+        preg_match('/(students|staff)/', strtolower($USER->profile['CampusRoles']), $matches);
+        if ( ! $matches) {
             return null;
         }
 
