@@ -15,12 +15,12 @@
 // along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
 
 /**
-* A block to mark off students and display a survey.
-*
-* @package     block_markoff
-* @copyright   2020 Veronica Bermegui, Michael Vangelovski
-* @license     http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
-*/
+ * A block to mark off students and display a survey.
+ *
+ * @package     block_markoff
+ * @copyright   2020 Veronica Bermegui, Michael Vangelovski
+ * @license     http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
+ */
 defined('MOODLE_INTERNAL') || die();
 
 class block_markoff extends block_base {
@@ -76,10 +76,14 @@ class block_markoff extends block_base {
             return null;
         }
 
-        // Only continue processing and display block if user is a student or admin.
+        // Only continue processing and display block if user is a student or staff.
         preg_match('/(students|staff)/', strtolower($USER->profile['CampusRoles']), $matches);
         if ( ! $matches) {
             return null;
+        }
+        $isstaff = false;
+        if ($matches[0] == 'staff') {
+            $isstaff = true;
         }
 
         // Set up some vars.
@@ -122,11 +126,17 @@ class block_markoff extends block_base {
         if ($record->surveystatus) {
             return null;
         }
+        // If user is inpersonating another, don't show the block.
+        if (\core\session\manager::is_loggedinas()) {
+            return null;
+        }
 
         $data = array(
             'instanceid' => $this->instance->id,
             'questiontitle' => $this->config->questiontitle,
             'questionbody' => file_rewrite_pluginfile_urls($this->config->questionbody['text'], 'pluginfile.php', $this->context->id, 'block_markoff', 'block_html', 0),
+            'staff' => $isstaff,
+
         );
         $this->content->text = $OUTPUT->render_from_template('block_markoff/survey', $data);
 

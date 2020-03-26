@@ -70,10 +70,10 @@ class block_markoff_edit_form extends block_edit_form {
             // Save message files to a permanent file area.
             if ( ! empty($data->config_questionbody) ) {
                 $html = file_save_draft_area_files(
-                    $data->config_questionbody['itemid'], 
-                    $this->block->context->id, 
-                    'block_markoff', 
-                    'block_html', 
+                    $data->config_questionbody['itemid'],
+                    $this->block->context->id,
+                    'block_markoff',
+                    'block_html',
                     0,
                     array('maxfiles' => 10, 'maxbytes' => 5000000, 'trusttext'=> true, 'subdirs' => 0),
                     $data->config_questionbody['text']
@@ -106,12 +106,12 @@ class block_markoff_edit_form extends block_edit_form {
 
             // Copy all the files from the 'real' area, into the draft areas.
             $html = file_prepare_draft_area(
-                $itemid, 
-                $this->block->context->id, 
+                $itemid,
+                $this->block->context->id,
                 'block_markoff',
-                'block_html', 
-                0, 
-                array('maxfiles' => 10, 'maxbytes' => 5000000, 'trusttext'=> true, 'subdirs' => 0), 
+                'block_html',
+                0,
+                array('maxfiles' => 10, 'maxbytes' => 5000000, 'trusttext'=> true, 'subdirs' => 0),
                 $this->block->config->questionbody['text']
             );
 

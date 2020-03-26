@@ -34,8 +34,8 @@
     function init(instanceid) {
         Log.debug('block_markoff/control: initializing controls of the block_markoff block instance ' + instanceid);
 
-        var region = $('[data-region="block_markoff-instance-' + instanceid +'"]').first();
-        
+        var region = $('[data-region="block_markoff-instance-' + instanceid + '"]').first();
+
         if (!region.length) {
             Log.debug('block_markoff/control: wrapping region not found!');
             return;
@@ -47,7 +47,7 @@
 
     // Constructor.
     function MarkoffControl(region, instanceid) {
-        var self = this;       
+        var self = this;
         self.region = region;
         self.instanceid = instanceid;
     }
@@ -61,50 +61,63 @@
             var option = $(this);
             self.saveSurveyResponse(option);
         });
+
+        self.region.on('click', '.survey-exit', function(e){
+            e.preventDefault();
+            var option = $(this); // User opted out.
+            self.saveSurveyResponse(option);
+            self.region.remove();
+
+        });
     }
 
-    MarkoffControl.prototype.saveSurveyResponse = function (option) {
-        var self = this;
+        MarkoffControl.prototype.saveSurveyResponse = function (option) {
+            var self = this;
 
-        // Check if already submiting.
-        if (self.region.hasClass('submitting')) {
-            return;
-        }
-
-        var question = option.closest('.question');
-        var questionid = question.data('id');
-        var questiontitle = question.data('title');
-        var response = option.data('value');
-
-        if (questionid == null || questiontitle == null || response == null) {
-            return;
-        }
-
-        self.region.addClass('submitting');
-        question.addClass('submitting');
-        option.addClass('submitting');
-
-        Ajax.call([{
-            methodname: 'block_markoff_save_survey_response',
-            args: {
-                questionid: questionid,
-                questiontitle: questiontitle,
-                response: response
-            },
-            done: function (response) {
-                if (response.completed) {
-                    self.region.find('.survey').html(response.message);
-                    self.region.delay(2000).fadeOut(400);
-                }
-            },
-            fail: function (reason) {
-                self.region.find('.survey').html('<h3>Error: Failed to save survey response.</h3>');
-                Log.error(reason);
+            // Check if already submiting.
+            if (self.region.hasClass('submitting')) {
+                return;
             }
-        }]);
-    }
 
-    return {
-        init: init
-    };
-});
+            var question = option.closest('.question');
+            var questionid = question.data('id');
+            var questiontitle = question.data('title');
+            var response;
+            if (option.hasClass('survey-exit')){
+                response = '2-opted-out';
+            }else{
+                 response = option.data('value');
+            }
+
+            if (questionid == null || questiontitle == null || response == null) {
+                return;
+            }
+
+            self.region.addClass('submitting');
+            question.addClass('submitting');
+            option.addClass('submitting');
+
+            Ajax.call([{
+                methodname: 'block_markoff_save_survey_response',
+                args: {
+                    questionid: questionid,
+                    questiontitle: questiontitle,
+                    response: response
+                },
+                done: function (response) {
+                    if (response.completed) {
+                        self.region.find('.survey').html(response.message);
+                        self.region.delay(2000).fadeOut(400);
+                    }
+                },
+                fail: function (reason) {
+                    self.region.find('.survey').html('<h3>Error: Failed to save survey response.</h3>');
+                    Log.error(reason);
+                }
+            }]);
+        }
+
+        return {
+            init: init
+        };
+ });

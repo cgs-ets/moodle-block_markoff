@@ -17,9 +17,9 @@
 /**
  * A block to mark off students and display a survey.
  *
- * @package    	block_markoff
- * @copyright 	2020 Veronica Bermegui, Michael Vangelovski
- * @license    	http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
+ * @package     block_markoff
+ * @copyright   2020 Veronica Bermegui, Michael Vangelovski
+ * @license     http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 namespace block_markoff\external;
 
