@@ -30,3 +30,4 @@ $string['markoff:edit'] = 'Edit a Markoff block';
 $string['questiontitle'] = 'Question Title';
 $string['questionbody'] = 'Question Body';
 $string['surveycomplete'] = '<h2>Thank you for completing the survey</h2>';
+$string['optoutdesc'] = 'Staff opted out survey';

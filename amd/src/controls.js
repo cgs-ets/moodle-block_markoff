@@ -65,11 +65,28 @@
         self.region.on('click', '.survey-exit', function(e){
             e.preventDefault();
             var option = $(this); // User opted out.
-            self.saveSurveyResponse(option);
+            self.saveStaffOptOut();
             self.region.remove();
 
         });
     }
+
+
+        MarkoffControl.prototype.saveStaffOptOut =  function(){
+
+            Ajax.call([{
+                methodname: 'block_markoff_save_staff_opt_out',
+                args: {
+                    },
+                done: function (response) {
+                     Log.debug(response);
+                },
+                fail: function (reason) {
+                    Log.error(reason);
+                }
+            }]);
+
+        }
 
         MarkoffControl.prototype.saveSurveyResponse = function (option) {
             var self = this;

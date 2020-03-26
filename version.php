@@ -22,7 +22,7 @@
  * @license    	http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 defined('MOODLE_INTERNAL') || die();
-$plugin->component = 'block_markoff'; 
-$plugin->version = 2020032100;
+$plugin->component = 'block_markoff';
+$plugin->version = 2020032101;
 $plugin->requires = 2010112400;
 

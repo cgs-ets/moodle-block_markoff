@@ -33,4 +33,5 @@ use external_api;
 class api extends external_api {
 
     use save_survey_response;
+    use save_staff_opt_out;
 }

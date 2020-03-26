@@ -33,5 +33,15 @@ $functions = [
     'loginrequired' => true,
     'ajax' => true,
     ],
+
+    'block_markoff_save_staff_opt_out' => [
+    'classname'   => 'block_markoff\external\api',
+    'methodname'  => 'save_staff_opt_out',
+    'classpath'   => '',
+    'description' => 'Saves opt out for the staff member.',
+    'type'        => 'write',
+    'loginrequired' => true,
+    'ajax' => true,
+    ],
 ];
 
