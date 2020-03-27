@@ -136,6 +136,7 @@ class block_markoff extends block_base {
             'questiontitle' => $this->config->questiontitle,
             'questionbody' => file_rewrite_pluginfile_urls($this->config->questionbody['text'], 'pluginfile.php', $this->context->id, 'block_markoff', 'block_html', 0),
             'staff' => $isstaff,
+            'reason' => $this->config->reason
 
         );
         $this->content->text = $OUTPUT->render_from_template('block_markoff/survey', $data);

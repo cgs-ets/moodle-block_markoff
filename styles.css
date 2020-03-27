@@ -160,8 +160,11 @@
     to {transform:rotate(360deg);}
 }
 
-/*Exit option */
-
-.survey-exit{
-    float: right;
+/* Question and Exit container.*/
+.control-container{
+    left: 5px;
+    height: 27px;
+}
+.survey-control{
+   float: right;
 }

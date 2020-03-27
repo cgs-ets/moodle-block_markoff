@@ -56,6 +56,9 @@ class block_markoff_edit_form extends block_edit_form {
         $attributes = 'rows="12"';
         $mform->addElement($type, $name, $label, $attributes, $editoroptions);
         $mform->setType('config_questionbody', PARAM_RAW);
+        $mform->addElement('textarea', 'config_reason', get_string('reason', 'block_markoff'), 'wrap="virtual" rows="4" cols="50"');
+        $mform->setType('config_reason', PARAM_TEXT);
+
     }
 
     /**
