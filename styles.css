@@ -165,6 +165,11 @@
     left: 5px;
     height: 27px;
 }
+
 .survey-control{
    float: right;
+}
+
+.tooltip {
+    z-index: 10002 !important;
 }
