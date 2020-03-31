@@ -177,12 +177,18 @@
 }
 .block_markoff .help{
     margin-top: 60px;
-/*    border: 1px solid;*/
 }
 
 .block_markoff .help .option:hover img {
     transform: none;
+}
+
+.block_markoff .help .option.envelope:hover {
     opacity: 0.2;
+}
+
+.block_markoff .help .option.envelope {
+    cursor: pointer;
 }
 .survey-exit {
     position: relative;

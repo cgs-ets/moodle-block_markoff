@@ -128,7 +128,7 @@ class block_markoff extends block_base {
         }
         // If user is inpersonating another, don't show the block.
         if (\core\session\manager::is_loggedinas()) {
-            //return null;
+            return null;
         }
 
         $data = array(
@@ -151,7 +151,7 @@ class block_markoff extends block_base {
 
     public function get_required_javascript() {
         parent::get_required_javascript();
-       
+
         $this->page->requires->js_call_amd('block_markoff/controls', 'init', [
             'instanceid' => $this->instance->id,
             'isstudent' => $this->is_student(),

@@ -72,8 +72,7 @@
         // Display Help Section to Student
         if(self.isstudent == true){
             self.region.find('.help').addClass('student');
-        }
-        
+        }        
 
     }
 
