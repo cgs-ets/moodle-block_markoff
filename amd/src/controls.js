@@ -31,7 +31,7 @@
     /**
      * Initializes the block controls.
      */
-    function init(instanceid) {
+    function init(instanceid,isstudent) {
         Log.debug('block_markoff/control: initializing controls of the block_markoff block instance ' + instanceid);
 
         var region = $('[data-region="block_markoff-instance-' + instanceid + '"]').first();
@@ -41,15 +41,16 @@
             return;
         }
 
-        var control = new MarkoffControl(region, instanceid);
+        var control = new MarkoffControl(region, instanceid,isstudent);
         control.main();
     }
 
     // Constructor.
-    function MarkoffControl(region, instanceid) {
+    function MarkoffControl(region, instanceid,isstudent) {
         var self = this;
         self.region = region;
         self.instanceid = instanceid;
+        self.isstudent = isstudent;
     }
 
     MarkoffControl.prototype.main = function () {
@@ -66,8 +67,13 @@
             e.preventDefault();
             self.saveStaffOptOut();
             self.region.remove();
-
         });
+        
+        // Display Help Section to Student
+        if(self.isstudent == true){
+            self.region.find('.help').addClass('student');
+        }
+        
 
     }
 
@@ -99,13 +105,8 @@
             var question = option.closest('.question');
             var questionid = question.data('id');
             var questiontitle = question.data('title');
-            var response;
-            if (option.hasClass('survey-exit')){
-                response = '2-opted-out';
-            }else{
-                 response = option.data('value');
-            }
-
+            var  response = option.data('value');
+            
             if (questionid == null || questiontitle == null || response == null) {
                 return;
             }

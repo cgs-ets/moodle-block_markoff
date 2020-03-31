@@ -60,13 +60,13 @@ class block_markoff_edit_form extends block_edit_form {
         $mform->addElement('textarea', 'config_reason', get_string('reason', 'block_markoff'), 'wrap="virtual" rows="4" cols="50"');
         $mform->setType('config_reason', PARAM_TEXT);
 
-        $type = 'editor';
-        $name = 'config_gethelpbody';
-        $label = get_string('helpbody', 'block_markoff');
-        $editoroptions = array('maxfiles' => EDITOR_UNLIMITED_FILES, 'noclean' => true, 'context' => $this->block->context);
-        $attributes = 'rows="12"';
-        $mform->addElement($type, $name, $label, $attributes, $editoroptions);
-        $mform->setType('config_gethelpbody', PARAM_RAW);
+//        $type = 'editor';
+//        $name = 'config_gethelpbody';
+//        $label = get_string('helpbody', 'block_markoff');
+//        $editoroptions = array('maxfiles' => EDITOR_UNLIMITED_FILES, 'noclean' => true, 'context' => $this->block->context);
+//        $attributes = 'rows="12"';
+//        $mform->addElement($type, $name, $label, $attributes, $editoroptions);
+//        $mform->setType('config_gethelpbody', PARAM_RAW);
 
 
 
@@ -95,6 +95,20 @@ class block_markoff_edit_form extends block_edit_form {
                 );
                 $data->config_questionbody['text'] = $html;
             }
+
+            if ( ! empty($data->config_gethelpbody) ) {
+                $html = file_save_draft_area_files(
+                    $data->config_gethelpbody['itemid'],
+                    $this->block->context->id,
+                    'block_markoff',
+                    'block_html',
+                    0,
+                    array('maxfiles' => 10, 'maxbytes' => 5000000, 'trusttext'=> true, 'subdirs' => 0),
+                    $data->config_questionbody['text']
+                );
+                $data->config_gethelpbody['text'] = $html;
+            }
+
         }
         return $data;
     }
@@ -133,7 +147,6 @@ class block_markoff_edit_form extends block_edit_form {
             $this->block->config->questionbody['itemid'] = $itemid;
             $this->block->config->questionbody['text'] = $html;
         }
-
         // Set form data.
         parent::set_data($defaults);
     }

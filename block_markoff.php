@@ -128,7 +128,7 @@ class block_markoff extends block_base {
         }
         // If user is inpersonating another, don't show the block.
         if (\core\session\manager::is_loggedinas()) {
-            return null;
+            //return null;
         }
 
         $data = array(
@@ -138,7 +138,6 @@ class block_markoff extends block_base {
             'staff' => $role,
             'student' => $role,
             'reason' => $this->config->reason,
-            'helpoptions' =>file_rewrite_pluginfile_urls($this->config->gethelpbody['text'], 'pluginfile.php', $this->context->id, 'block_markoff', 'block_html', 0)
 
         );
         $this->content->text = $OUTPUT->render_from_template('block_markoff/survey', $data);
@@ -152,8 +151,23 @@ class block_markoff extends block_base {
 
     public function get_required_javascript() {
         parent::get_required_javascript();
+       
         $this->page->requires->js_call_amd('block_markoff/controls', 'init', [
             'instanceid' => $this->instance->id,
+            'isstudent' => $this->is_student(),
         ]);
+    }
+
+    private function is_student(){
+        // Only continue processing and display block if user is a student or staff.
+        global $USER;
+
+        preg_match('/students/', strtolower($USER->profile['CampusRoles']), $matches);
+
+        if ($matches) {
+            return true;
+        }
+        return false;
+
     }
 }
