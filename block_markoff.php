@@ -81,9 +81,9 @@ class block_markoff extends block_base {
         if ( ! $matches) {
             return null;
         }
-        $isstaff = false;
+        $role = false;
         if ($matches[0] == 'staff') {
-            $isstaff = true;
+            $role = true;
         }
 
         // Set up some vars.
@@ -135,8 +135,10 @@ class block_markoff extends block_base {
             'instanceid' => $this->instance->id,
             'questiontitle' => $this->config->questiontitle,
             'questionbody' => file_rewrite_pluginfile_urls($this->config->questionbody['text'], 'pluginfile.php', $this->context->id, 'block_markoff', 'block_html', 0),
-            'staff' => $isstaff,
-            'reason' => $this->config->reason
+            'staff' => $role,
+            'student' => $role,
+            'reason' => $this->config->reason,
+            'helpoptions' =>file_rewrite_pluginfile_urls($this->config->gethelpbody['text'], 'pluginfile.php', $this->context->id, 'block_markoff', 'block_html', 0)
 
         );
         $this->content->text = $OUTPUT->render_from_template('block_markoff/survey', $data);

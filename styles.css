@@ -39,15 +39,17 @@
 @media only screen and (min-width: 530px)  {
     .block_markoff .survey {
         width: 100%;
-        max-width: 600px;
-        margin-left: -300px;
+        max-width: 800px;
+        margin-left: -400px;
+        margin-top: -50px;
     }
 }
 .block_markoff .title {
-    font-size: 2.5rem;
-    color: #7ebbe3;
+    font-size: 2.3rem;
+    color: #000011; /*#7ebbe3; */
     font-weight: 500;
     line-height: 3rem;
+    margin-bottom: 40px;
 }
 .block_markoff .question.submitting .spinner {
     display: block;
@@ -68,7 +70,7 @@
     font-weight: 600;
     background: transparent;
     color: #000;
-    font-size: 75%;
+    font-size: 100%;
 }
 .block_markoff .answer .option .tip {
     display: none;
@@ -106,10 +108,12 @@
     text-align: center;
     color: #000;
     text-decoration: none;
+    margin: 0 10px 10px 10px;
 }
 .block_markoff [data-id="1"] .option img {
     display: inline-block;
-    width: 80px;
+    margin-bottom: 10px;
+/*    width: 80px;*/
     -webkit-transition: all 0.2s ease-out;
     -moz-transition: all 0.2s ease-out;
     -o-transition: all 0.2s ease-out;
@@ -160,11 +164,42 @@
     to {transform:rotate(360deg);}
 }
 
-/* Question and Exit container.*/
-.control-container{
-    left: 5px;
-    height: 27px;
+/*Help Container*/
+.block_markoff .help .option {
+    position: relative;
 }
-.survey-control{
-   float: right;
+.block_markoff .help .option .label {
+    display: block;
+    font-weight: 600;
+    background: transparent;
+    color: #000;
+    font-size: 100%;
+}
+.block_markoff .help{
+    margin-top: 60px;
+/*    border: 1px solid;*/
+}
+
+.block_markoff .help .option:hover img {
+    transform: none;
+    opacity: 0.2;
+}
+.survey-exit {
+    position: relative;
+    float: right;
+}
+.survey-why {
+    position: relative;
+    float: left;
+    margin-left: 25px;
+    margin-top: 7px;
+}
+.tooltip {
+    z-index: 10002 !important;
+}
+
+.details{
+    margin-top: 20px;
+    margin-right: 43px;
+    position: relative;
 }

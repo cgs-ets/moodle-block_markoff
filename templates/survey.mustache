@@ -25,22 +25,29 @@
 }}
 
 <div class="block_markoff-root" data-region="block_markoff-instance-{{instanceid}}">
-    <div class="overlay"></div>
-    <div class="survey" data-region="block_markoff-instance-{{instanceid}}">
-<div class='control-container'>
-    <a href="#" class="survey-control " data-toggle="tooltip" data-placement="right"  data-original-title="{{reason}}"><i class="icon fa fa-question icon-large" aria-hidden="true" aria-label="why"></i></a>
-    {{#staff}}<a href="#" class="survey-exit survey-control" title="Exit"><i class="icon fa fa-times icon-large" aria-hidden="true" aria-label="exit"></i></a>{{/staff}}
-</div>
- 
-    
-       	<div class="question" data-id="1" data-title="{{questiontitle}}"> 
-    		<h5 class="title">{{{questiontitle}}}</h5>
-    		<div class="answer">
-    			{{{questionbody}}}
-    		</div>
-        <div class="spinner"><div class="circle spin"></div></div>         
+  <div class="overlay"></div>
+  <div class="survey" data-region="block_markoff-instance-{{instanceid}}">
+    <div class="question" data-id="1" data-title="{{questiontitle}}">
+        	<h5 class="title">{{{questiontitle}}}</h5>
+    	<div class="answer">
+    	  {{{questionbody}}}
     	</div>
+
+        <div class="spinner"><div class="circle spin"></div></div>
+
+        <div class="details">
+           {{#staff}}<a href="#" class="btn btn-secondary survey-exit survey-control">Opt out</a>{{/staff}}
+            <a href="#" class="survey-why" data-toggle="tooltip" data-placement="right"  data-original-title="{{reason}}">Why are we asking this?</i></a>
+        </div>
+
+          {{^staff}}
+            <div class="help">
+               {{{helpoptions}}}
+            </div>
+           {{/staff}}
+
     </div>
+   </div>
 </div>
 
 

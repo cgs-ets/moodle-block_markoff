@@ -64,11 +64,11 @@
 
         self.region.on('click', '.survey-exit', function(e){
             e.preventDefault();
-            var option = $(this); // User opted out.
             self.saveStaffOptOut();
             self.region.remove();
 
         });
+
     }
 
 
