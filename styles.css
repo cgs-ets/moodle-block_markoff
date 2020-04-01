@@ -33,8 +33,9 @@
     text-align: center;
     padding: 20px;
     z-index: 10001;
-    width: 90%;
+    width: 91%;
     margin-left: -45%;
+
 }
 @media only screen and (min-width: 530px)  {
     .block_markoff .survey {
@@ -54,29 +55,32 @@
         font-size: 77% !important;
     }
 
-    .block_markoff .help.student .option .label{
-        display: block;
-        font-weight: bolder;
-        background: transparent;
-        color: #000;
-        font-size: 65%;
+    .survey-why {
+     margin-left: 0;
+    }
+    
+    .survey-exit.survey-control {
+    margin-right: -40px;
     }
 
-    .help.student .option {
+    .block_markoff [data-id="1"] .option img {
         width: 60px;
-    }
-    .option.phone {      
-        right: 25px;
-        padding-right: 0 !important;
+        height: 60px;
     }
 
-    a.option.staff {        
-        margin-right: 25px !important;
+    .block_markoff .survey{
+       overflow-y: scroll;
+       max-height: 70%;
+    }
 
+    a.option.phone { 
+
+        margin-left: 0px;
+        margin-right: auto;
+        padding-right: 0px;
+        width: 100%;
     }
-    a.option.envelope {        
-        margin-right: 25px !important;
-    }
+
 }
 .block_markoff .title {
     font-size: 2.3rem;
