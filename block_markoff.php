@@ -128,7 +128,7 @@ class block_markoff extends block_base {
         }
         // If user is inpersonating another, don't show the block.
         if (\core\session\manager::is_loggedinas()) {
-            return null;
+            //return null;
         }
 
         $data = array(

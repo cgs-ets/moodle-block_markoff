@@ -79,23 +79,10 @@ class block_markoff_edit_form extends block_edit_form {
                     'block_markoff',
                     'block_html',
                     0,
-                    array('maxfiles' => 10, 'maxbytes' => 5000000, 'trusttext'=> true, 'subdirs' => 0),
+                    array('maxfiles' => 20, 'maxbytes' => 5000000, 'trusttext'=> true, 'subdirs' => 0),
                     $data->config_questionbody['text']
                 );
                 $data->config_questionbody['text'] = $html;
-            }
-
-            if ( ! empty($data->config_gethelpbody) ) {
-                $html = file_save_draft_area_files(
-                    $data->config_gethelpbody['itemid'],
-                    $this->block->context->id,
-                    'block_markoff',
-                    'block_html',
-                    0,
-                    array('maxfiles' => 10, 'maxbytes' => 5000000, 'trusttext'=> true, 'subdirs' => 0),
-                    $data->config_questionbody['text']
-                );
-                $data->config_gethelpbody['text'] = $html;
             }
 
         }
