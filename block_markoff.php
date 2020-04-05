@@ -76,6 +76,11 @@ class block_markoff extends block_base {
             return null;
         }
 
+        // If user is inpersonating another, don't show the block.
+        if (\core\session\manager::is_loggedinas()) {
+            return null;
+        }
+
         // Only continue processing and display block if user is a student or staff.
         preg_match('/(students|staff)/', strtolower($USER->profile['CampusRoles']), $matches);
         if ( ! $matches) {
@@ -126,17 +131,13 @@ class block_markoff extends block_base {
         if ($record->surveystatus) {
             return null;
         }
-        // If user is inpersonating another, don't show the block.
-        if (\core\session\manager::is_loggedinas()) {
-            return null;
-        }
+   
 
         $data = array(
             'instanceid' => $this->instance->id,
             'questiontitle' => $this->config->questiontitle,
             'questionbody' => file_rewrite_pluginfile_urls($this->config->questionbody['text'], 'pluginfile.php', $this->context->id, 'block_markoff', 'block_html', 0),
             'staff' => $role,
-            'student' => $role,
             'reason' => $this->config->reason,
 
         );
