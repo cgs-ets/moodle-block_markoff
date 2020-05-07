@@ -81,6 +81,11 @@ class block_markoff extends block_base {
             return null;
         }
 
+        // If user is in the exclude list, don't show the block.
+        if (in_array($USER->username, explode(',', str_replace(' ', '', $this->config->excludeusers)))) {
+            return null;
+        }
+
         // Only continue processing and display block if user is a student or staff.
         preg_match('/(students|staff)/', strtolower($USER->profile['CampusRoles']), $matches);
         if ( ! $matches) {

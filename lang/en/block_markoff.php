@@ -32,4 +32,4 @@ $string['questionbody'] = 'Question Body';
 $string['reason'] = 'Reason for the survey';
 $string['surveycomplete'] = '<h2>Thank you for completing the survey</h2>';
 $string['optoutdesc'] = 'Staff opted out survey';
-//$string['helpbody'] = 'Help Body';
+$string['excludeusers'] = 'Exclude users (csv IDs)';

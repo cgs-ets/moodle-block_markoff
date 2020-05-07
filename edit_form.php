@@ -60,6 +60,9 @@ class block_markoff_edit_form extends block_edit_form {
         $mform->addElement('textarea', 'config_reason', get_string('reason', 'block_markoff'), 'wrap="virtual" rows="4" cols="50"');
         $mform->setType('config_reason', PARAM_TEXT);
 
+        $mform->addElement('text', 'config_excludeusers', get_string('excludeusers', 'block_markoff'));
+        $mform->setType('config_excludeusers', PARAM_TEXT);
+
         }
 
     /**

@@ -23,6 +23,5 @@
  */
 defined('MOODLE_INTERNAL') || die();
 $plugin->component = 'block_markoff';
-$plugin->version = 2020032101;
+$plugin->version = 2020032102;
 $plugin->requires = 2010112400;
-
