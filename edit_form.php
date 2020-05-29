@@ -63,7 +63,11 @@ class block_markoff_edit_form extends block_edit_form {
         $mform->addElement('text', 'config_excludeusers', get_string('excludeusers', 'block_markoff'));
         $mform->setType('config_excludeusers', PARAM_TEXT);
 
-        }
+        $mform->addElement('text', 'config_displayday', get_string('daytodisplay', 'block_markoff'));
+        $mform->setType('config_displayday', PARAM_TEXT);
+
+
+    }
 
     /**
      * Return submitted data.

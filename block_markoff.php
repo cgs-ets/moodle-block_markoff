@@ -76,6 +76,11 @@ class block_markoff extends block_base {
             return null;
         }
 
+        // Check the day to display the survey
+        if(date('D',time()) != $this->config->displayday){
+            return null;
+        }
+
         // If user is inpersonating another, don't show the block.
         if (\core\session\manager::is_loggedinas()) {
             return null;
@@ -136,7 +141,7 @@ class block_markoff extends block_base {
         if ($record->surveystatus) {
             return null;
         }
-   
+
 
         $data = array(
             'instanceid' => $this->instance->id,
