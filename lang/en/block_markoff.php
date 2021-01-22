@@ -33,4 +33,5 @@ $string['reason'] = 'Reason for the survey';
 $string['surveycomplete'] = '<h2>Thank you for completing the survey</h2>';
 $string['optoutdesc'] = 'Staff opted out survey';
 $string['excludeusers'] = 'Exclude users (csv IDs)';
-$string['daytodisplay'] = 'Day to display survey (Mon-Sun)';
+$string['daystodisplaystudents'] = 'Day to display survey for <strong>students</strong>';
+$string['daystodisplaystaff'] = 'Day to display survey for <strong>staff</strong>';

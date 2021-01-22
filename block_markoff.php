@@ -76,11 +76,6 @@ class block_markoff extends block_base {
             return null;
         }
 
-        // Check the day to display the survey
-        if(date('D',time()) != $this->config->displayday){
-            return null;
-        }
-
         // If user is inpersonating another, don't show the block.
         if (\core\session\manager::is_loggedinas()) {
             return null;
@@ -93,12 +88,23 @@ class block_markoff extends block_base {
 
         // Only continue processing and display block if user is a student or staff.
         preg_match('/(students|staff)/', strtolower($USER->profile['CampusRoles']), $matches);
+
         if ( ! $matches) {
             return null;
         }
+
         $role = false;
         if ($matches[0] == 'staff') {
             $role = true;
+            // Check the day to display the survey
+            if (!in_array(date('w', time()), $this->config->displaydaystaff)) {
+                return null;
+            }
+        } else if ($matches[0] == 'student') {
+            // Check the day to display the survey
+            if (!in_array(date('w', time()), $this->config->displaydaystudent)) {
+                return null;
+            }
         }
 
         // Set up some vars.
@@ -115,7 +121,9 @@ class block_markoff extends block_base {
             $USER->username,
             $markoffday,
         );
+
         $record = $DB->get_record_sql($sql, $params);
+        #var_dump($record); exit;
 
         if ( ! $record) {
             // Mark the user off.
