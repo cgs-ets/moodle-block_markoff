@@ -106,7 +106,7 @@ class block_markoff extends block_base {
                 return null;
             }
         }
-
+    
         // Set up some vars.
         $now = time();
         $markoffday = date('Y-m-d', $now);
