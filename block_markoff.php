@@ -159,7 +159,7 @@ class block_markoff extends block_base {
             'reason' => $this->config->reason,            
 
         );
-        //var_dump($data); exit;
+        
         $this->content->text = $OUTPUT->render_from_template('block_markoff/survey', $data);
 
         return $this->content;
