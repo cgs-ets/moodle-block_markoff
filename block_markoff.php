@@ -160,7 +160,12 @@ class block_markoff extends block_base {
 
         );
         
-        $this->content->text = $OUTPUT->render_from_template('block_markoff/survey', $data);
+        if ($role) {
+
+            $this->content->text = $OUTPUT->render_from_template('block_markoff/survey_staff', $data);
+        } else {
+            $this->content->text = $OUTPUT->render_from_template('block_markoff/survey_student', $data);
+        }
 
         return $this->content;
     }
