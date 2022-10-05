@@ -164,8 +164,6 @@ class block_markoff extends block_base {
             $this->content->text = $OUTPUT->render_from_template('block_markoff/survey_student', $data);
         }
 
-        $this->page->add_body_class('markoff-visible');
-
         return $this->content;
     }
 
