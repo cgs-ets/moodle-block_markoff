@@ -57,7 +57,7 @@
         var self = this;
 
         // Add body class.
-        $('body').removeClass('markoff-visible');
+        $('body').addClass('markoff-visible');
 
         // Handle answer click.
         self.region.on('click', '.answer .option', function(e) {
