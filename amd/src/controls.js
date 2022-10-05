@@ -125,8 +125,8 @@
               if (response.completed) {
                 self.region.find('.survey').html(response.message);
                 self.region.delay(2000).fadeOut(400);
-                $('body').removeClass('markoff-visible');
               }
+              $('body').removeClass('markoff-visible');
             },
             fail: function (reason) {
               self.region.find('.survey').html('<h3>Error: Failed to save survey response.</h3>');
