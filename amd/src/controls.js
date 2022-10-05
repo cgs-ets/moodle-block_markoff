@@ -70,6 +70,7 @@
             e.preventDefault();
             self.saveStaffOptOut();
             self.region.remove();
+            $('body').removeClass('markoff-visible');
         });
         
         // Display Help Section to Student
