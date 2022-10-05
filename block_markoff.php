@@ -150,22 +150,21 @@ class block_markoff extends block_base {
             return null;
         }
 
-
         $data = array(
             'instanceid' => $this->instance->id,
             'questiontitle' => $this->config->questiontitle,
             'questionbody' => file_rewrite_pluginfile_urls($this->config->questionbody['text'], 'pluginfile.php', $this->context->id, 'block_markoff', 'block_html', 0),
             'staff' => $role,
             'reason' => $this->config->reason,            
-
         );
         
         if ($role) {
-
             $this->content->text = $OUTPUT->render_from_template('block_markoff/survey_staff', $data);
         } else {
             $this->content->text = $OUTPUT->render_from_template('block_markoff/survey_student', $data);
         }
+
+        $this->page->add_body_class('markoff-visible');
 
         return $this->content;
     }

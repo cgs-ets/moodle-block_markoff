@@ -8,6 +8,9 @@
 }
 
 /* General styling */
+body.markoff-visible .drawer {
+  z-index: 10000 !important;
+}
 .block_markoff {
     display: block;
     opacity: 1;

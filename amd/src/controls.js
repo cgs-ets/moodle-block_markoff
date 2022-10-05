@@ -77,64 +77,62 @@
     }
 
 
-        MarkoffControl.prototype.saveStaffOptOut =  function(){
+    MarkoffControl.prototype.saveStaffOptOut =  function(){
+        Ajax.call([{
+            methodname: 'block_markoff_save_staff_opt_out',
+            args: {},
+            done: function (response) {
+              Log.debug(response);
+            },
+            fail: function (reason) {
+              Log.error(reason);
+            }
+        }]);
+    }
 
-            Ajax.call([{
-                methodname: 'block_markoff_save_staff_opt_out',
-                args: {
-                    },
-                done: function (response) {
-                     Log.debug(response);
-                },
-                fail: function (reason) {
-                    Log.error(reason);
-                }
-            }]);
+    MarkoffControl.prototype.saveSurveyResponse = function (option) {
+        var self = this;
 
+        // Check if already submiting.
+        if (self.region.hasClass('submitting')) {
+            return;
         }
 
-        MarkoffControl.prototype.saveSurveyResponse = function (option) {
-            var self = this;
-
-            // Check if already submiting.
-            if (self.region.hasClass('submitting')) {
-                return;
-            }
-
-            var question = option.closest('.question');
-            var questionid = question.data('id');
-            var questiontitle = question.data('title');
-            var  response = option.data('value');
-            
-            if (questionid == null || questiontitle == null || response == null) {
-                return;
-            }
-
-            self.region.addClass('submitting');
-            question.addClass('submitting');
-            option.addClass('submitting');
-
-            Ajax.call([{
-                methodname: 'block_markoff_save_survey_response',
-                args: {
-                    questionid: questionid,
-                    questiontitle: questiontitle,
-                    response: response
-                },
-                done: function (response) {
-                    if (response.completed) {
-                        self.region.find('.survey').html(response.message);
-                        self.region.delay(2000).fadeOut(400);
-                    }
-                },
-                fail: function (reason) {
-                    self.region.find('.survey').html('<h3>Error: Failed to save survey response.</h3>');
-                    Log.error(reason);
-                }
-            }]);
+        var question = option.closest('.question');
+        var questionid = question.data('id');
+        var questiontitle = question.data('title');
+        var response = option.data('value');
+        
+        if (questionid == null || questiontitle == null || response == null) {
+            return;
         }
 
-        return {
-            init: init
-        };
+        self.region.addClass('submitting');
+        question.addClass('submitting');
+        option.addClass('submitting');
+
+        Ajax.call([{
+            methodname: 'block_markoff_save_survey_response',
+            args: {
+              questionid: questionid,
+              questiontitle: questiontitle,
+              response: response
+            },
+            done: function (response) {
+              if (response.completed) {
+                self.region.find('.survey').html(response.message);
+                self.region.delay(2000).fadeOut(400);
+                ('body').removeClass('markoff-visible');
+              }
+            },
+            fail: function (reason) {
+              self.region.find('.survey').html('<h3>Error: Failed to save survey response.</h3>');
+              Log.error(reason);
+            }
+        }]);
+    }
+
+    return {
+        init: init
+    };
  });
