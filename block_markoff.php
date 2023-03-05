@@ -87,8 +87,10 @@ class block_markoff extends block_base {
         }
 
         // Only continue processing and display block if user is a student or staff.
+        if (!isset($USER->profile) || !isset($USER->profile['CampusRoles'])) {
+            return null;
+        }
         preg_match('/(students|staff)/', strtolower($USER->profile['CampusRoles']), $matches);
-
         if ( ! $matches) {
             return null;
         }
