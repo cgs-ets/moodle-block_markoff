@@ -72,11 +72,15 @@
             self.region.remove();
             $('body').removeClass('markoff-visible');
         });
-        
+
         // Display Help Section to Student
         if(self.isstudent == true){
             self.region.find('.help').addClass('student');
-        }        
+            self.region.find('#markoff-make-appointment').on('click', function(e) {
+                e.preventDefault();
+                window.location.href = this.href;
+            });
+        }
 
     }
 
@@ -106,7 +110,7 @@
         var questionid = question.data('id');
         var questiontitle = question.data('title');
         var response = option.data('value');
-        
+
         if (questionid == null || questiontitle == null || response == null) {
             return;
         }
